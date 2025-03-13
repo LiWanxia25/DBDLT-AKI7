@@ -52,24 +52,24 @@ if st.button("Predict"):
     predicted_proba = model.predict_proba(standardized_features)[0]
 
     # Display prediction results    
-    st.write(f"**Predicted Class:** {predicted_class} (1: Disease, 0: No Disease)")   
+    st.write(f"**Predicted Class:** {predicted_class} (0: No Disease, 1: Disease)")   
     formatted_proba = ", ".join(f"{prob:.2f}" for prob in predicted_proba)
     st.write(f"**Prediction Probabilities:** {formatted_proba}")
 
     probability = predicted_proba[predicted_class] * 100
     # Generate advice based on prediction results  
-    if predicted_class == 1:        
-        advice = (            
-            f"According to the model, you are at high risk of developing acute kidney injury (AKI) after heart transplant surgery. "            
-            f"The model predicts a {probability:.1f}% probability of AKI. "            
-            "It is recommended to closely monitor kidney function indicators and maintain communication with your medical team for timely prevention or intervention."        
-        )    
-    else:        
-        advice = (           
-            f"According to the model, you are at low risk of developing acute kidney injury (AKI) after heart transplant surgery. "            
-            f"The model predicts a {probability:.1f}% probability of not developing AKI. "            
-            "However, it is still important to closely monitor kidney function post-surgery and follow the guidance of your medical team to ensure a smooth     recovery."        
-        )      
+    if predicted_class == 1:
+        advice = (
+            f"According to the model, you are at high risk of developing acute kidney injury (AKI) after liver transplantation. "
+            f"The model predicts a {probability:.1f}% probability of AKI. "
+            "It is recommended to closely monitor kidney function indicators and maintain communication with your medical team for timely prevention or intervention."
+        )
+    else:
+        advice = (
+            f"According to the model, you are at low risk of developing acute kidney injury (AKI) after liver transplantation. "
+            f"The model predicts a {probability:.1f}% probability of not developing AKI. "
+            "However, it is still important to closely monitor kidney function post-surgery and follow the guidance of your medical team to ensure a smooth recovery."
+    )    
     st.write(advice)
 
     # SHAP Explanation
@@ -81,10 +81,10 @@ if st.button("Predict"):
     trainy=df.AKI123
     x_train=df.drop('AKI123',axis=1)
     from sklearn.preprocessing import StandardScaler
-    continuous_cols = [1,2,3,4,5,6,7]
+    continuous_cols = ['Age','Weight','Pre_Na','Post_UAR','Post_ALB','Post_P','Post_PLT']
     trainx = x_train.copy()
     scaler = StandardScaler()
-    trainx.iloc[:, continuous_cols] = scaler.fit_transform(x_train.iloc[:, continuous_cols])
+    trainx[continuous_cols] = scaler.fit_transform(x_train[continuous_cols])
 
     explainer_shap = shap.KernelExplainer(model.predict_proba, trainx)
     
