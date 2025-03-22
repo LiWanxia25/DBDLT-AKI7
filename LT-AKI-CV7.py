@@ -24,7 +24,7 @@ Weight = st.number_input("Weight (kg):", min_value=40, max_value=100, value=65)
 # Pre_Na: numerical input
 Pre_Na = st.number_input("Pre_Na (mmol/L):", min_value=110.0, max_value=150.0, value=130.0)
 # Post_UAR：numerical input
-Post_UAR = st.number_input("Post_UAR (mg/g):", min_value=0.0, max_value=40.0, value=6.5)
+Post_UAR = st.number_input("Post_UAR (μmol/g):", min_value=0.0, max_value=40.0, value=6.5)
 # Post_ALB: numerical input
 Post_ALB = st.number_input("Post_ALB (g/L):", min_value=0.0, max_value=50.0, value=35.0)
 # Post_P：numerical input
