@@ -44,7 +44,7 @@ standardized_features_1 = scaler.transform(features_df)
 standardized_features = pd.DataFrame(standardized_features_1, columns=feature_names)
 
 if st.button("Predict"):   
-    OPTIMAL_THRESHOLD = 0.461
+    OPTIMAL_THRESHOLD = 0.521
     
     #Predict class and probabilities    
     #predicted_class = model.predict(final_features_df)[0]   
@@ -67,9 +67,9 @@ if st.button("Predict"):
     #predicted_proba = model.predict_proba(standardized_features)[0]
 
     # Display prediction results    
-    st.write(f"**Predicted Class:** {predicted_class} (0: No Disease, 1: Disease)")   
-    formatted_proba = ", ".join(f"{prob:.2f}" for prob in predicted_proba)
-    st.write(f"**Prediction Probabilities:** {formatted_proba}")
+    #st.write(f"**Predicted Class:** {predicted_class} (0: No Disease, 1: Disease)")   
+    #formatted_proba = ", ".join(f"{prob:.2f}" for prob in predicted_proba)
+    #st.write(f"**Prediction Probabilities:** {formatted_proba}")
 
     probability = predicted_proba[predicted_class] * 100
     # Generate advice based on prediction results  
